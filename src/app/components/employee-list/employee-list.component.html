@@ -1,0 +1,39 @@
+<div id="pdfContent">
+  <h2>Lista de Empleados</h2>
+  <button *ngIf="authService.isAdmin()" (click)="navigateToCreate()">Crear Nuevo Empleado</button>
+  |
+  <button (click)="generatePDF()">Generar Reporte PDF</button> <!-- Botón para generar PDF -->
+  <div>
+    <label for="filterName">Buscar por nombre:</label>
+    <input id="filterName" [(ngModel)]="filterName" (ngModelChange)="filterByName($event)" placeholder="Ingrese el nombre" />
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Empresa</th>
+        <th>Teléfono</th>
+        <th>Cargo</th>
+        <th>Activo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of filteredEmployees">
+        <td>{{ employee.id }}</td>
+        <td>{{ employee.firstName }}</td>
+        <td>{{ employee.lastName }}</td>
+        <td>{{ employee.entityName }}</td>
+        <td>{{ employee.phone }}</td>
+        <td>{{ employee.position }}</td>
+        <td>{{ employee.isActive ? 'Sí' : 'No' }}</td>
+        <td>
+          <button *ngIf="authService.isAdmin()"(click)="editEmployee(employee.id)">Editar</button>
+          <button *ngIf="authService.isAdmin()" (click)="deleteEmployee(employee.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

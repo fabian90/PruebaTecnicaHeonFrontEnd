@@ -1,0 +1,10 @@
+<nav>
+    <ul>
+      <li><a routerLink="/employees">Empleados</a></li>
+      <li><a routerLink="/entity">Entidades</a></li>
+      <li><a routerLink="/login">Iniciar Sesión</a></li>
+      <li class="nav-item" *ngIf="isLoggedIn()">
+        <button class="btn nav-link" (click)="onLogout()">Cerrar Sesión</button>
+      </li>
+    </ul>
+  </nav>

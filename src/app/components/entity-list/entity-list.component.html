@@ -1,0 +1,25 @@
+<div>
+    <h2>Lista de Entidades</h2>
+    <button *ngIf="authService.isAdmin()" (click)="navigateToCreate()">Crear Nueva Entidad</button>   
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Activo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entity of entities">
+          <td>{{ entity.id }}</td>
+          <td>{{ entity.name }}</td>
+          <td>{{ entity.isActive ? 'Sí' : 'No' }}</td>
+          <td>
+            <button *ngIf="authService.isAdmin()" (click)="editEntity(entity.id)">Editar</button>
+            <button *ngIf="authService.isAdmin()" (click)="deleteEntity(entity.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
